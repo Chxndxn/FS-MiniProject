@@ -1,10 +1,10 @@
 :root{
-    --color-primary:;
-    --color-secondary:;
-    --color-accent:rgb(50, 159, 207);
-    --color-heading:;
-    --color-body:;
-    --color-border:;
+    /* --color-primary:; */
+    /* --color-secondary:; */
+    --color-accent: #3aaf9f;
+    /* --color-heading:; */
+    /* --color-body:; */
+    /* --color-border:; */
 }
 /* Input */
 .input {
@@ -13,10 +13,18 @@
 }
 
 .input-text {
-  border: 1px solid black;
+  background: #f4f8f7;
+  border: 0;
   border-radius: 12px;
-  padding: 0.5rem;
   outline: 0;
+  height: 5rem;
+  width: 33rem;
+  padding-left: 13px;
+}
+
+.username {
+    font-weight: 600;
+    font-size: 2rem;
 }
 
 /* Typography */
@@ -29,23 +37,33 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-/* Button */
-.button {
-  background: var(--color-accent);
-  outline: 0;
-  border: 0;
-  border-radius: 15px;
-  text-transform: uppercase;
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin: 1rem 0;
-  cursor: pointer;
-  padding: 1rem 4vw;
-  color: white;
-  transition: all 0.15s;
+p{
+    font-size: 1.8rem;
 }
 
-.button:hover {
+/* Button */
+.button {
+    outline: 0;
+    border: 0;
+    border-radius: 30px;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    margin: 1rem 0;
+    cursor: pointer;
+    padding: 1.5rem 4vw;
+    color: white;
+    transition: opacity 0.15s;
+}
+
+.button-accent {
+    background: var(--color-accent);
+}
+
+.button-accent:hover {
     opacity: 0.9;
-    color: black;
+}
+
+.button-outline {
+    background: none;
+    border: 1px solid white;
 }
