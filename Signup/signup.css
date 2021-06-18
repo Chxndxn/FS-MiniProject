@@ -14,6 +14,16 @@ body {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+p {
+  font-size: 1.8rem;
+  line-height: 1.5;
+}
+
+h2 {
+  font-size: 4rem;
+  line-height: 0;
+}
+
 /* Input */
 .input {
   display: block;
@@ -28,6 +38,10 @@ body {
   height: 5rem;
   width: 33rem;
   padding-left: 13px;
+}
+
+.login-input{
+  margin: 2rem 4rem;
 }
 
 /* Button */
@@ -93,4 +107,40 @@ body {
   opacity: 0.8;
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
+}
+
+.grid-left .button-outline {
+  position: absolute;
+  top: 30rem;
+  left: 6rem;
+}
+
+.grid-right .button-accent {
+  position: absolute;
+  right: 15rem;
+}
+
+.login-content {
+  color: var(--color-heading);
+    font-weight: 600;
+    position: relative;
+    bottom: 34rem;
+    text-align: center;
+}
+
+.signup-header {
+  color: var(--color-heading);
+  font-size: 5rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 6rem 5rem;
+  padding: 1rem;
+}
+
+.signup-content {
+  color: grey;
+  text-align: center;
+  padding-top: 2rem;
+  font-size: 1.5rem;
+  margin: 0;
 }
