@@ -1,0 +1,11 @@
+Animal ID|Name|Species|Diet|Health|Staff
+23710|Panda|melanoleuca|Herbivore|Good|Bibin
+31962|Kangaroo|Antilopine kangaroo|Herbivore|Good,Need Medication|John
+51027|Gorilla|Bonoby|Omnivore|Need Medication,Critical|Mathew
+44820|Zebra|E. quagga|Herbivore|Good|Vijay
+56030|Tiger|Siberian|Carnivore|Good|Anil
+72590|Elephant|Mammoth|Herbivore|Critical|Modi
+81238|Deer|Reindeer|Herbivore|Good|Gilbert
+51904|Crocodile|American Crocodile|Omnivore|Need Medication,Critical|Andrews
+72120|Bear|Brown Bear|Carnivore|Good,Need Medication|Anish
+96832|Sloth|Maned Sloth|Herbivore|Good,Need Medication|Ajay

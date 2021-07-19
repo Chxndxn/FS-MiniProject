@@ -1,0 +1,11 @@
+Bird ID|Name|Species|Diet|Health|Staff
+16820|Eagle|Golden Eagle|Carnivore|Need Medication , Critical|James
+26815|Cuckoo|Yellow billed|Omnivore|Good|Micheal
+36817|Flamingo|Chilean|Carnivore|Good|Bibin
+49480|Gold finch|European|Omnivore|Good , Need Medication|Raquel
+58920|Duck|Black head|Omnivore|Good|Sergio
+52016|Humming bird|Bee humming bird|Omnivore|Need Medication , Critical|Oslo
+69162|Ostrich|Masai ostrich|Omnivore|Good , Need Medication|Jeevan
+70952|Penguin|Rock hopper|Omnivore|Good|Jeffery
+79528|Swan|Whooper swan|Omnivore|Need Medication|Elizabeth
+82591|Woodpecker|Red-bellied|Omnivore|Good|Mosh

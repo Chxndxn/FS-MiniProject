@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign-Up</title>
+    <link rel="stylesheet" href="/static/css/signup.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="grid grid-1X2">
+        <div class="grid-left">
+          <img src="/static/images/blue-background.jpg" alt="" />
+          <div class="login-content">
+            <h2>Welcome Back!</h2>
+            <p>To stay connected with us login with your personal info</p>
+          </div>
+          <form action="/">
+              <button class="button button-outline" type="submit" src="#">
+                Login
+              </button>
+          </form>
+        </div>
+        <div class="grid-right">
+          <h2 class="signup-header">Sign-up</h2>
+          {% if error %}
+          <p class="error">{{ error }}</p>
+          {% endif %}
+          <p class="signup-content">Or use your email to connect with us</p>
+          <form action="/landingPage", method="POST">
+              <div class="login-input">
+                <input
+                  class="input input-text"
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                />
+                <input
+                  class="input input-text"
+                  type="text"
+                  name="email"
+                  placeholder="Email"
+                />
+                <input
+                  class="input input-text"
+                  type="password"
+                  name="password"
+                  placeholder="Passowrd"
+                />
+              </div>
+              <button class="button button-accent" type="submit" src="#">
+                Sign-Up
+              </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

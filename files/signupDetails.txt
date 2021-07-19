@@ -1,0 +1,6 @@
+Username|Email|Password
+Chxndxn|cool.chandangowda.11.2@gmail.com|12345
+Bharani|bharani627@gmail.com|1234567
+Ajay|ajay420@gmail.com|ajay007
+Anish|anishsanky@gmail.com|drblind
+Andrew|andrewsir@gmail.com|mamba24

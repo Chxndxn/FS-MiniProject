@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modals</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/static/css/animal.css" />
+</head>
+<body>
+    <!-- NavBar -->
+    <nav class="nav">
+        <ul class="list nav__list collapsible__content">
+          <li class="nav__item"><a href="/landingPage">Home</a></li>
+          <li class="nav__item">
+            <a
+              type="button"
+              class="nav-modal"
+              data-bs-toggle="modal"
+              data-bs-target="#addModal"
+            >
+              Add
+            </a>
+          </li>
+          <li class="nav__item"><a
+            type="button"
+            class="nav-modal"
+            data-bs-toggle="modal"
+            data-bs-target="#editModal"
+          >
+            Edit
+          </a></li>
+          <li class="nav__item"><a
+            type="button"
+            class="nav-modal"
+            data-bs-toggle="modal"
+            data-bs-target="#deleteModal"
+          >
+            Delete
+          </a></li>
+          <li class="nav__item">
+            <button type="submit" class="button button-outline">Logout</button>
+          </li>
+        </ul>
+      </nav>
+
+
+      <!-- Add Modal -->
+      <div
+      class="modal fade"
+      id="addModal"
+      tabindex="-1"
+      aria-labelledby="addModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addModalLabel">Add Record</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form action="/addAnimalRecord" method="POST">
+                <label class="label-text" for="animalID">Animal ID :</label>
+                <input class=" input input-text" type="text" name="animalID" id="animalID">
+                <label class="label-text" for="name">Name :</label>
+                <input class=" input input-text" type="text" name="name" id="name">
+                <label class="label-text" for="species">Species :</label>
+                <input class=" input input-text" type="text" name="species" id="species">
+                <p class="label-text">Diet :</p>
+                <span class="label-radio-input">
+                    <input  type="radio" name="diet" id="herbivore" value="Herbivore">
+                    <label class="label-radio" for="herbivore">Herbivore</label>
+                </span>
+                <span class="label-radio-input">
+                    <input type="radio" name="diet" id="carnivore" value="Carnivore">
+                    <label class="label-radio" for="carnivore">Carnivore</label>
+                </span>
+                <span class="label-radio-input">
+                    <input type="radio" name="diet" id="omnivore" value="Omnivore">
+                    <label class="label-radio" for="omnivore">Omnivore</label>
+                </span>
+                <p class="label-text">Health :</p>
+                <span class="label-radio-input">
+                    <input  type="radio" name="diet" id="good" value="Good">
+                    <label class="label-radio" for="good">Good</label>
+                </span>
+                <span class="label-radio-input">
+                    <input type="radio" name="diet" id="needMedication" value="needMedication">
+                    <label class="label-radio" for="needMedication">Need Medication</label>
+                </span>
+                <span class="label-radio-input">
+                    <input type="radio" name="diet" id="critical" value="critical">
+                    <label class="label-radio" for="critical">Critical</label>
+                </span>
+                <label class="label-text" for="staff">Staff :</label>
+                <input class=" input input-text" type="text" name="staff" id="staff">
+                </div>
+                          <div class="modal-footer">
+                <button
+                  type="reset"
+                  class="button btn-secondary"
+                >
+                  Reset
+                </button>
+                <button type="button" class="button btn-dark">Add</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div
+      class="modal fade"
+      id="editModal"
+      tabindex="-1"
+      aria-labelledby="editModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editModalLabel">Edit Record</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form action="/editAnimalRecord" method="POST">
+                <label class="label-text" for="animalID">ID of record to edit :</label>
+                <input class=" input input-text" type="text" name="animalID" id="animalID">
+                <label class="label-text" for="name">Name :</label>
+                <input class=" input input-text" type="text" name="name" id="name">
+                <label class="label-text" for="species">Species :</label>
+                <input class=" input input-text" type="text" name="species" id="species">
+                <p class="label-text">Diet :</p>
+                <span class="label-radio-input">
+                    <input  type="radio" name="diet" id="herbivore" value="Herbivore">
+                    <label class="label-radio" for="herbivore">Herbivore</label>
+                </span>
+                <span class="label-radio-input">
+                    <input type="radio" name="diet" id="carnivore" value="Carnivore">
+                    <label class="label-radio" for="carnivore">Carnivore</label>
+                </span>
+                <span class="label-radio-input">
+                    <input type="radio" name="diet" id="omnivore" value="Omnivore">
+                    <label class="label-radio" for="omnivore">Omnivore</label>
+                </span>
+                <p class="label-text">Health :</p>
+                <span class="label-radio-input">
+                    <input  type="radio" name="diet" id="good" value="Good">
+                    <label class="label-radio" for="good">Good</label>
+                </span>
+                <span class="label-radio-input">
+                    <input type="radio" name="diet" id="needMedication" value="needMedication">
+                    <label class="label-radio" for="needMedication">Need Medication</label>
+                </span>
+                <span class="label-radio-input">
+                    <input type="radio" name="diet" id="critical" value="critical">
+                    <label class="label-radio" for="critical">Critical</label>
+                </span>
+                <label class="label-text" for="staff">Staff :</label>
+                <input class=" input input-text" type="text" name="staff" id="staff">
+                </div>
+                          <div class="modal-footer">
+                <button
+                  type="reset"
+                  class="button btn-secondary"
+                >
+                  Reset
+                </button>
+                <button type="button" class="button btn-dark">Add</button>
+            </form>
+            </div>
+          <div class="modal-footer">
+            <button
+              type="reset"
+              class="button btn-secondary"
+            >
+              Reset
+            </button>
+            <button type="button" class="button btn-dark">Edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div
+      class="modal fade"
+      id="deleteModal"
+      tabindex="-1"
+      aria-labelledby="deleteModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel">Delete Record</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <label class="label-text" for="deleteRecord">Delete Record by ID or Name:</label>
+            <input class="input input-text" type="text" name="deleteRecord" id="deleteRecord">
+            </div>
+          <div class="modal-footer">
+            <button
+              type="reset"
+              class="button btn-secondary"
+            >
+              Reset
+            </button>
+            <button type="button" class="button btn-dark">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+</body>
+</html>
