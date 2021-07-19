@@ -22,7 +22,7 @@ def signupPage():
 def landingPage():
     return render_template('landingPage.html')
 
-# Login Operation
+# Signup Operation
 @app.route('/landingPage', methods = ['GET','POST'])
 def enterDetails():
     if request.method == 'POST':
@@ -44,10 +44,10 @@ def enterDetails():
         fWrite.close()
         return render_template('landingPage.html')
 
-# Signup Operation
+#Login Operation
 @app.route('/homePage', methods = ['GET','POST'])
 def checkDetails():
-    if request.method == 'POST':
+     if request.method == 'POST':
         error = None
         username = request.form.get('username')
         password = request.form.get('password')
@@ -55,7 +55,6 @@ def checkDetails():
         for line in fRead:
             line = line.rstrip()
             loginDetails = line.split('|')
-            print(loginDetails[0])
             if loginDetails[0] == 'Username':
                 continue
             if loginDetails[0] == username:
@@ -63,13 +62,9 @@ def checkDetails():
                     return render_template('landingPage.html')
                 else:
                     error = 'Password Incorrect'
-                    continue
-            else:
-                error = 'Username does not Exist'
-                continue
-        if error == 'Password Incorrect':
-            return render_template('login.html',error = error)
-        elif error == 'Username does not exist':
+                    return render_template('login.html',error = error)
+        if loginDetails[0]!= username:   
+            error = 'Username does not Exist'
             return render_template('login.html',error = error)
         fRead.close()
 
@@ -97,6 +92,7 @@ def showBirdRecord():
 
 @app.route('/addBirdRecord',methods = ['GET','POST'])
 def addBirdRecord():
+    error = None
     if request.method == 'POST':
         birdID = request.form.get('birdID')
         name = request.form.get('name')
@@ -113,11 +109,11 @@ def addBirdRecord():
                 continue
             elif birdData[0] == birdID:
                 error = 'Bird ID already exists'
-                return redirect('/birdRecord')
+                return redirect('/birdRecord',error = error)
             else:
                 continue
         fRead.close()
-        fWrite.write('\n' + birdID + '|' + name + '|' + species + '|' + diet + '|' + health + '|' + staff)
+        fWrite.write(birdID + '|' + name + '|' + species + '|' + diet + '|' + health + '|' + staff + '\n')
         fWrite.close()
         return redirect('/birdRecord')
 
@@ -135,16 +131,12 @@ def updateBirdRecord():
                 fWrite.write(line)
                 continue
             if updateBirdData[0] == birdID:
-                health = updateBirdData[4]
-                staff = updateBirdData[-1]
                 name = updateBirdData[1]
                 species = updateBirdData[2]
                 diet = updateBirdData[3]
-                replaceHealth = ','.join(request.form.getlist('health'))
-                replaceStaff = request.form.get('staff')
-                replaceHealth = health.replace(health,replaceHealth)
-                replaceStaff = staff.replace(staff,replaceStaff)
-                fWrite.write(birdID + '|' + name + '|' + species + '|' + diet + '|' + replaceHealth + '|' + replaceStaff + '\n')
+                health = ','.join(request.form.getlist('health'))
+                staff = request.form.get('staff')
+                fWrite.write(birdID + '|' + name + '|' + species + '|' + diet + '|' + health + '|' + staff + '\n')
             else:
                 fWrite.write(line)
     fWrite.close()
@@ -177,6 +169,22 @@ def deleteBirdRecord():
     os.rename('./files/tempBirdRecord.txt','./files/birdRecord.txt')
     return redirect('/birdRecord')
 
+@app.route('/searchBirdRecord', methods = ['GET','POST'])
+def searchBirdRecord():
+    heading = []
+    data.clear()
+    if request.method == 'POST':
+        searchID = request.form.get('searchID')
+        with open('./files/birdRecord.txt','r') as fRead:
+            for line in fRead:
+                line = line.rstrip()
+                search_bird = line.split('|')
+                if search_bird[0] == 'Bird ID':
+                    heading += search_bird
+                    continue
+                elif search_bird[0] == searchID or search_bird[1] == searchID:
+                    data.append(search_bird)
+            return render_template('bird.html',heading = heading, data = data)
 
 # Animal Record Operations
 @app.route('/animalRecord')
@@ -195,6 +203,7 @@ def showAnimalRecord():
             line = line.rstrip()
             animalRecordData = line.split('|')
             data.append(animalRecordData)                   #Appending data into data list
+            print(animalRecordData)
         if data != []:
             break
     fRead.close()
@@ -294,8 +303,11 @@ def searchAnimalRecord():
                 line = line.rstrip()
                 search_animal = line.split('|')
                 if search_animal[0] == 'Animal ID':
-                    stringSearchAnimal = '|'.join(search_animal)
-
+                    heading += search_animal
+                    continue
+                elif search_animal[0] == searchID or search_animal[1] == searchID:
+                    data.append(search_animal)
+            return render_template('animal.html',heading = heading, data = data)
 
 #Visitor Record operations
 @app.route('/visitorRecord')
@@ -343,7 +355,7 @@ def addVisitorRecord():
             else:
                 continue
         fRead.close()
-        fWrite.write('\n' + visitorID + '|' + name + '|' + mobile + '|' + entryTime + '|' + exitTime + '|' + visitedDate)
+        fWrite.write(visitorID + '|' + name + '|' + mobile + '|' + entryTime + '|' + exitTime + '|' + visitedDate + '\n')
         fWrite.close()
         return redirect('/visitorRecord')
 
@@ -399,6 +411,22 @@ def deleteVisitorRecord():
     os.rename('./files/tempVisitorRecord.txt','./files/visitorRecord.txt')
     return redirect('/visitorRecord')
 
+@app.route('/searchVisitorRecord', methods = ['GET','POST'])
+def searchVisitorRecord():
+    heading = []
+    data.clear()
+    if request.method == 'POST':
+        searchID = request.form.get('searchID')
+        with open('./files/visitorRecord.txt','r') as fRead:
+            for line in fRead:
+                line = line.rstrip()
+                search_visitor = line.split('|')
+                if search_visitor[0] == 'Visitor ID':
+                    heading += search_visitor
+                    continue
+                elif search_visitor[0] == searchID or search_visitor[1] == searchID:
+                    data.append(search_visitor)
+            return render_template('visitor.html',heading = heading, data = data)
 
 #Staff Record operations
 @app.route('/staffRecord')
@@ -444,11 +472,11 @@ def addStaffRecord():
             else:
                 continue
         fRead.close()
-        fWrite.write('\n' + staffID + '|' + name + '|' + mobile + '|' + position)
+        fWrite.write(staffID + '|' + name + '|' + mobile + '|' + position + '\n')
         fWrite.close()
         return redirect('/staffRecord')
 
-@app.route('/editStaffRecord', methods = ['GET','POST'])
+@app.route('/updateStaffRecord', methods = ['GET','POST'])
 def updatestaffRecord():
     if request.method == 'POST':
         fRead = open('./files/staffRecord.txt','r')
@@ -462,8 +490,8 @@ def updatestaffRecord():
                 fWrite.write(line)
                 continue
             if updateStaffData[0] == staffID:
-                name = request.form.get('name')
-                mobile = request.form.get('mobile')
+                name = updateStaffData[1]
+                mobile = updateStaffData[2]
                 position = request.form.get('position')
                 fWrite.write(staffID + '|' + name + '|' + mobile + '|' + position + '\n')
             else:
@@ -479,7 +507,7 @@ def deleteStaffRecord():
     if request.method == 'POST':
         fRead = open('./files/staffRecord.txt','r')
         fWrite = open('./files/tempStaffRecord.txt','w')
-        deleteStaffRecord = request.form.get('deleteStaffRecord')
+        staffID = request.form.get('staffID')
         line = ' '
         while(line):
             line = fRead.readline()
@@ -488,7 +516,7 @@ def deleteStaffRecord():
                 fWrite.write(line)
                 continue
             if len(line) > 0:
-                if deleteStaffData[0] == deleteStaffRecord or deleteStaffData[1] == deleteStaffRecord:
+                if deleteStaffData[0] == staffID:
                     continue
                 else:
                     fWrite.write(line)
@@ -497,6 +525,23 @@ def deleteStaffRecord():
     os.remove('./files/staffRecord.txt')
     os.rename('./files/tempStaffRecord.txt','./files/staffRecord.txt')
     return redirect('/staffRecord')
+
+@app.route('/searchStaffRecord', methods = ['GET','POST'])
+def searchStaffRecord():
+    heading = []
+    data.clear()
+    if request.method == 'POST':
+        searchID = request.form.get('searchID')
+        with open('./files/staffRecord.txt','r') as fRead:
+            for line in fRead:
+                line = line.rstrip()
+                search_staff = line.split('|')
+                if search_staff[0] == 'Staff ID':
+                    heading += search_staff
+                    continue
+                elif search_staff[0] == searchID or search_staff[1] == searchID:
+                    data.append(search_staff)
+            return render_template('staff.html',heading = heading, data = data)
 
 if __name__ == '__main__':
     app.run(debug=True)

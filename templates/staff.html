@@ -49,7 +49,7 @@
           </a>
         </li>
         <li class="nav__item">
-          <button type="submit" class="button button-outline">Logout</button>
+          <a href="/" class="button button-outline">Logout</a>
         </li>
       </ul>
     </nav>
@@ -120,7 +120,7 @@
       </div>
     </div>
 
-    <!-- Edit Modal -->
+    <!-- Update Modal -->
     <div
       class="modal fade"
       id="updateModal"
@@ -141,19 +141,12 @@
             ></button>
           </div>
             <div class="modal-body">
-              <label class="label-text" for="visitorID">Staff ID to Update :</label>
+              <label class="label-text" for="staffID">Staff ID to Update :</label>
               <input
                 class="input input-text"
                 type="text"
-                name="visitorID"
-                id="visitorID"
-              />
-              <label class="label-text" for="species">Mobile Number :</label>
-              <input
-                class="input input-text"
-                type="text"
-                name="species"
-                id="species"
+                name="staffID"
+                id="staffID"
               />
               <label class="label-text" for="position">Position :</label>
               <input
@@ -199,13 +192,13 @@
               <input
                 class="input input-text"
                 type="text"
-                name="deleteRecord"
+                name="staffID"
                 id="deleteRecord"
               />
             </div>
             <div class="modal-footer">
               <button type="reset" class="button btn-secondary">Clear</button>
-              <button type="button" class="button btn-dark">Delete</button>
+              <button type="submit" class="button btn-dark">Delete</button>
             </div>
           </form>
         </div>
@@ -219,8 +212,10 @@
     </div>
     <div class="table-container">
       <div class="search-block">
-        <input class="input-search" name='searchRecord' type="text" placeholder="Search">
-        <button class="button  button-search btn-dark">Search</button>
+        <form action="/searchStaffRecord" method="POST">
+          <input class="input-search" name='searchID' type="text" placeholder="Search">
+          <button class="button  button-search btn-dark">Search</button>
+        </form>
       </div>
       <table class="table table-dark table-striped table-hover">
         <thead>

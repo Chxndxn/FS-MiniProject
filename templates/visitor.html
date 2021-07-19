@@ -252,8 +252,10 @@
     </div>
     <div class="table-container">
       <div class="search-block">
-        <input class="input-search" name='searchRecord' type="text" placeholder="Search">
-        <button class="button  button-search btn-dark">Search</button>
+        <form action="/searchVisitorRecord" method="POST">
+          <input class="input-search" name='searchID' type="text" placeholder="Search">
+          <button class="button  button-search btn-dark">Search</button>
+        </form>
       </div>
       <table class="table table-dark table-striped table-hover">
         <thead>
